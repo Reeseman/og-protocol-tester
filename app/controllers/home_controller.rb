@@ -4,7 +4,7 @@ class HomeController < ApplicationController
       if params[:url].nil?
         format.html { render 'index' }
       else
-        @value = 'real data'
+        @data = HomeHelper.open_graph_data(params[:url])
         format.js
         format.html do
           redirect_to '/'

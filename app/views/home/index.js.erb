@@ -1,1 +1,5 @@
-document.getElementById("displayContainer").innerHTML = "<%= @value %>";
+<% if @data[:error] %>
+  document.getElementById("displayContainer").innerHTML = "<%= @data[:error] %>";
+<% else %>
+  document.getElementById("displayContainer").innerHTML = "goode";
+<% end %>
