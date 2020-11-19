@@ -1,5 +1,21 @@
 <% if @data[:error] %>
   document.getElementById("displayContainer").innerHTML = "<%= @data[:error] %>";
 <% else %>
-  document.getElementById("displayContainer").innerHTML = "goode";
+  var s = ""
+  s += "<p>Preview:</p>"
+
+  <% if @data['og:image:height'].present? && @data['og:image:width'].present? %>
+    s += "<img src=\"<%= @data['og:image'] %>\" height=\"<%= @data['og:image:height'] %>\" width=\"<%= @data['og:image:width'] %>\" />"
+  <% else %>
+    s += "<img src=\"<%= @data['og:image'] %>\" />"
+  <% end %>
+
+  s += "<p>OpenGraph traits:</p>"
+  s += "<ul>"
+  <% @data.each do |k, v| %>
+    s += "<li><strong><%= k %></strong>: <%= v %></li>"
+  <% end %>
+  s += "</ul>"
+  document.getElementById("displayContainer").innerHTML = s;
+
 <% end %>
